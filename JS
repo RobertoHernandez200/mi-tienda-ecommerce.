@@ -1,0 +1,105 @@
+const productos = [
+  { id: 1, nombre: "PS5 PRO 2T", precio: 3700000, img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT4vjmiZYjxavX9MLDSZdLHyKQQ1xogTlXpXg&s", categoria: "Consolas" },
+  { id: 2, nombre: "Mando ps5", precio: 350000, img: "https://cosonyb2c.vtexassets.com/arquivos/ids/345373/PS5_DS_Pshot_A.jpg?v=637363940945300000", categoria: "Mandos" },
+  { id: 3, nombre: "PS PORTABLE", precio: 800000, img: "https://cosonyb2c.vtexassets.com/arquivos/ids/359137/711719579823_002.jpg?v=638539581529600000", categoria: "Consolas" },
+  { id: 4, nombre: "SPIDER-MAN 2", precio: 250000, img: "https://image.api.playstation.com/vulcan/ap/rnd/202306/1219/60eca3ac155247e21850c7d075d01ebf0f3f5dbf19ccd2a1.jpg", categoria: "Juegos" },
+  { id: 5, nombre: "CASCOS", precio: 700000, img: "https://www.alkosto.com/medias/711719540892-001-750Wx750H?context=bWFzdGVyfGltYWdlc3wxMDEwNnxpbWFnZS93ZWJwfGFHVTJMMmcxWlM4eE5ESTVORGswTkRZME5URTFNQzgzTVRFM01UazFOREE0T1RKZk1EQXhYemMxTUZkNE56VXdTQXw1NmYxNTdhMmIwZGVlMTRmZjNhNDM3MzgyYjg3ZjlhM2VjM2NmODE5ZGJlNGYyMmIyNGE0NmRlZTFhZjExNTFm", categoria: "Accesorios" },
+  { id: 6, nombre: "PS PLUS", precio: 26000, img: "https://i.ytimg.com/vi_webp/m6ZeVHsMCcE/maxresdefault.webp", categoria: "Juegos" },
+  { id: 7, nombre: "CARGADOR DE MANDOS", precio: 120000, img: "https://cosonyb2c.vtexassets.com/arquivos/ids/353121/617885024009_001.jpg?v=637704158891870000", categoria: "Accesorios" },
+  { id: 8, nombre: "GAFAS VR PS5/PS4", precio: 950000, img: "https://gmedia.playstation.com/is/image/SIEPDC/psvr-product-thumbnail-01-en-14sep21?$facebook$", categoria: "Accesorios" },
+  { id: 9, nombre: "Mando PS5 perla", precio: 400000, img: "https://cosonyb2c.vtexassets.com/arquivos/ids/360953/711719587569_001.jpg?v=638729736273400000", categoria: "Mandos" },
+  { id: 10, nombre: "Mando xbox series x negro", precio: 215000, img: "https://http2.mlstatic.com/D_NQ_NP_932200-MLA54147001786_032023-O.webp", categoria: "Mandos" },
+  { id: 11, nombre: "Xbox Serie X", precio: 3500000, img: "https://http2.mlstatic.com/D_NQ_NP_942133-MLA74651936102_022024-O.webp", categoria: "Consolas" },
+  { id: 12, nombre: "Mando Xbox series x verde", precio: 250000, img: "https://http2.mlstatic.com/D_NQ_NP_859676-MLU72579822578_112023-O.webp", categoria: "Mandos" },
+  { id: 13, nombre: "Nintendo switch oled", precio: 1800000, img: "https://panamericana.vtexassets.com/arquivos/ids/562816/consola-nintendo-switch-oled-blanca-juego-mario-kart-8-45496885144.jpg?v=638665868079530000", categoria: "Consolas" },
+  { id: 14, nombre: "Mochila PS5", precio: 200000, img: "https://down-co.img.susercontent.com/file/sg-11134201-7qvfd-lhzybz2wj78268", categoria: "Accesorios" },
+  { id: 15, nombre: "Mando PS5 edge", precio: 850000, img: "https://clsonyb2c.vtexassets.com/arquivos/ids/466817/711719590347_001.jpg.jpg?v=638767784555470000", categoria: "Mandos" },
+  { id: 16, nombre: "GS5 6000 en 1", precio: 75000, img: "https://media.falabella.com/falabellaCO/134521452_01/w=1500,h=1500,fit=pad", categoria: "Independientes" },
+  { id: 17, nombre: "Game pass", precio: 40000, img: "https://data.xxlgamer.com/products/5531/jOmbPDsnsyWcq4-big.jpeg", categoria: "Juegos" },
+  { id: 18, nombre: "Mario kart 8", precio: 210000, img: "https://juegosdigitalescolombia.com/files/images/productos/1637874549-mario-kart-8-deluxe.jpg", categoria: "Juegos" },
+  { id: 19, nombre: "Fifa 25 xbox", precio: 350000, img: "https://livecards.net/pi/ea-sports-fc-25-xbox-series-xs-us-74980.jpg", categoria: "Juegos" },
+  { id: 20, nombre: "Protector Nintendo switch", precio: 23000, img: "https://media.falabella.com/falabellaCO/124349835_01/w=1500,h=1500,fit=pad", categoria: "Accesorios" },
+  { id: 21, nombre: "Game Boy supreme", precio: 40000, img: "https://olimpica.vtexassets.com/arquivos/ids/1619722/image-4b27bf9ba3cf4175a2b9c6734205cb15.jpg?v=638701320026270000", categoria: "Independientes" },
+  { id: 22, nombre: "Controles Nintendo switch", precio: 250000, img: "https://sgfm.elcorteingles.es/SGFM/dctm/MEDIA03/202010/26/00197580100028____6__640x640.jpg", categoria: "Mandos" }
+];
+
+let carrito = [];
+
+function mostrarProductos(lista) {
+  const cont = document.getElementById('productos');
+  cont.innerHTML = "";
+  lista.forEach(p => {
+    cont.innerHTML += `
+      <div class="producto">
+        <img src="${p.img}" alt="${p.nombre}">
+        <h3>${p.nombre}</h3>
+        <p>Precio: $${p.precio.toLocaleString()}</p>
+        <button onclick="agregarAlCarrito(${p.id})">Agregar</button>
+      </div>
+    `;
+  });
+}
+
+function agregarAlCarrito(id) {
+  const prod = productos.find(p => p.id === id);
+  carrito.push(prod);
+  actualizarCarrito();
+}
+
+function actualizarCarrito() {
+  const lista = document.getElementById('lista-carrito');
+  lista.innerHTML = "";
+  let total = 0;
+  carrito.forEach(p => {
+    lista.innerHTML += `<li>${p.nombre} - $${p.precio.toLocaleString()}</li>`;
+    total += p.precio;
+  });
+  document.getElementById('total').innerText = total.toLocaleString();
+}
+
+function vaciarCarrito() {
+  carrito = [];
+  actualizarCarrito();
+}
+
+function finalizarCompra() {
+  if (carrito.length === 0) {
+    alert("😕 El carrito está vacío.");
+    return;
+  }
+  alert("🎉 ¡Gracias por tu compra!");
+  carrito = [];
+  actualizarCarrito();
+}
+
+function filtrarProductos() {
+  const cat = document.getElementById('filtro-categoria').value;
+  if (cat === "todos") {
+    mostrarProductos(productos);
+  } else {
+    const filtrados = productos.filter(p => p.categoria === cat);
+    mostrarProductos(filtrados);
+  }
+}
+
+// Mostrar todos al cargar
+mostrarProductos(productos);
+
+// PayPal botón
+paypal.Buttons({
+  createOrder: function(data, actions) {
+    let total = carrito.reduce((s, p) => s + p.precio, 0);
+    return actions.order.create({
+      purchase_units: [{
+        amount: { value: total.toFixed(2) }
+      }]
+    });
+  },
+  onApprove: function(data, actions) {
+    return actions.order.capture().then(function() {
+      alert('✅ ¡Pago exitoso con PayPal!');
+      carrito = [];
+      actualizarCarrito();
+    });
+  }
+}).render('#paypal-button-container');
